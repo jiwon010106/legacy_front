@@ -276,14 +276,23 @@ const EventSchedule = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-4">
           <div className="w-full sm:w-auto">
             <p className="SubFont text-xl sm:text-2xl">
               Total: {formattedFestivals.length}건
             </p>
           </div>
-          <div className="w-full sm:w-[300px]">
-            <SearchBar value={search} onChange={handleSearchChange} />
+          <div className="w-full flex">
+            <input
+              type="text"
+              value={search}
+              onChange={handleSearchChange}
+              placeholder="행사명을 입력해주세요"
+              className="w-full p-2 border border-r-0 rounded-l-md focus:outline-none focus:border-blue-800"
+            />
+            <button className="bg-blue-800 text-white px-4 py-2 rounded-r-md hover:bg-blue-900 transition-colors">
+              검색
+            </button>
           </div>
         </div>
 
