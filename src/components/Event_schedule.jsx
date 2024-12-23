@@ -27,7 +27,6 @@ import {
   formatFestivalData,
   handleImageError,
 } from "./events/utils/utilsExport";
-import SearchBar from "./events/ui/SearchBar";
 import ScrollToTop from "./events/ui/ScrollToTop";
 import Pagination from "./events/ui/Pagination";
 
@@ -278,7 +277,7 @@ const EventSchedule = () => {
         </div>
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-4">
           <div className="w-full sm:w-auto">
-            <p className="SubFont text-xl sm:text-2xl">
+            <p className="SubFont text-lg sm:text-xl">
               Total: {formattedFestivals.length}건
             </p>
           </div>
@@ -288,9 +287,9 @@ const EventSchedule = () => {
               value={search}
               onChange={handleSearchChange}
               placeholder="행사명을 입력해주세요"
-              className="w-full p-2 border border-r-0 rounded-l-md focus:outline-none focus:border-blue-800"
+              className="w-full py-1.5 px-3 border border-r-0 rounded-l-md focus:outline-none focus:border-blue-800 text-sm"
             />
-            <button className="bg-blue-800 text-white px-4 py-2 rounded-r-md hover:bg-blue-900 transition-colors">
+            <button className="bg-blue-800 text-white px-3 py-1.5 rounded-r-md hover:bg-blue-900 transition-colors text-sm">
               검색
             </button>
           </div>
@@ -386,22 +385,22 @@ const EventSchedule = () => {
 
           {!loading && !fetchError && !error && (
             <>
-              <ul className="SubFont text-3xl space-y-4 overflow-hidden">
+              <ul className="SubFont space-y-4 overflow-hidden mx-auto max-w-4xl">
                 {currentItems.length > 0 ? (
                   currentItems.map((festival, index) => (
                     <li
                       key={`${festival.programName}-${index}`}
-                      className="my-3 md:my-5 flex items-center opacity-0 animate-[slideDown_0.3s_ease-out_forwards]"
+                      className="my-3 md:my-4 flex items-center opacity-0 animate-[slideDown_0.3s_ease-out_forwards]"
                       style={{ animationDelay: `${index * 0.05}s` }}
                     >
-                      <div className="border p-4 rounded-lg transition-colors w-full">
+                      <div className="border p-3 rounded-lg transition-colors w-full">
                         <div className="flex items-start">
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
                               handleStarClick(festival);
                             }}
-                            className={`star-button mr-2 sm:mr-3 ${
+                            className={`star-button mr-2 ${
                               isEventStarred(festival.festivalid)
                                 ? "text-yellow-400"
                                 : "text-gray-300"
@@ -413,20 +412,19 @@ const EventSchedule = () => {
                                 : "추가"
                             }`}
                           >
-                            <TiStarFullOutline className="text-2xl sm:text-3xl" />
+                            <TiStarFullOutline className="text-xl sm:text-2xl" />
                           </button>
 
                           <div className="flex-1">
                             <div className="flex justify-between items-center mb-2">
-                              <h3 className="MainFont text-xl sm:text-2xl">
+                              <h3 className="MainFont text-lg sm:text-xl">
                                 {festival.programName}
                               </h3>
                               <button
                                 className="border-2 border-blue-800 rounded-md
                                            hover:bg-blue-800 hover:text-white
-                                          text-sm sm:text-base lg:text-lg
-                                          px-2 sm:px-3 lg:px-4
-                                          py-1 sm:py-1.5 lg:py-2
+                                          text-sm
+                                          px-2.5 py-1
                                           transition-all duration-300 ease-in-out
                                           shadow-sm hover:shadow-md
                                           text-center text-nowrap
@@ -437,8 +435,8 @@ const EventSchedule = () => {
                               </button>
                             </div>
 
-                            <div className="flex flex-col lg:flex-row gap-4 mb-4">
-                              <div className="lg:max-w-56 w-full">
+                            <div className="flex flex-col lg:flex-row gap-3">
+                              <div className="lg:w-48 w-full">
                                 <img
                                   src={
                                     festival.image && festival.image !== "N/A"
@@ -452,7 +450,7 @@ const EventSchedule = () => {
                                 />
                               </div>
                               <div className="flex-1">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-4">
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
                                   <div className=" p-2 sm:p-3 rounded-lg">
                                     <p className="SubFont text-base sm:text-lg">
                                       <span className="font-medium mr-2">
@@ -503,7 +501,7 @@ const EventSchedule = () => {
                     </li>
                   ))
                 ) : (
-                  <p className="text-center text-gray-500 py-8 text-xl">
+                  <p className="text-center text-gray-500 py-6 text-lg">
                     해당 날짜에 예정된 행사가 없습니다.
                   </p>
                 )}
