@@ -1,4 +1,4 @@
-// const rootPath = "http://localhost:8000";
+// const rootPath = "https://back.jjiwon.site/";
 const rootPath = "https://back.jjiwon.site/";
 
 const GET_HERITAGE_API_URL = `${rootPath}/heritage`;

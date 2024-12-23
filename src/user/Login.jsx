@@ -33,7 +33,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/account/login",
+        "https://back.jjiwon.site/account/login",
         formData,
         {
           headers: {
