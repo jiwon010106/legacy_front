@@ -27,6 +27,7 @@ import {
   formatFestivalData,
   handleImageError,
 } from "./events/utils/utilsExport";
+import SearchBar from "./events/ui/SearchBar";
 import ScrollToTop from "./events/ui/ScrollToTop";
 import Pagination from "./events/ui/Pagination";
 
@@ -244,7 +245,7 @@ const EventSchedule = () => {
         <div className="bg-white min-h-[410px] rounded-lg shadow-md p-6 mb-8">
           <div className="xl:flex xl:flex-row flex-col justify-between items-start gap-6">
             <div
-              className="xl:w-1/2 w-full flex flex-wrap justify-center sm:justify-start items-center 
+              className="xl:w-1/2 w-full flex flex-wrap justify-center sm:justify-start items-center
                           sm:ml-4 gap-2 sm:gap-4 xl:mt-[6.25rem] mt-4"
             >
               <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-3 ">
@@ -275,23 +276,14 @@ const EventSchedule = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-4">
-          <div className="w-full sm:w-auto">
-            <p className="SubFont text-lg sm:text-xl">
+        <div className="flex flex-col sm:flex-row sm:justify-between">
+          <div className="w-full sm:w-1/2 mb-4 flex justify-start">
+            <p className="SubFont text-2xl">
               Total: {formattedFestivals.length}건
             </p>
           </div>
-          <div className="w-full flex">
-            <input
-              type="text"
-              value={search}
-              onChange={handleSearchChange}
-              placeholder="행사명을 입력해주세요"
-              className="w-full py-1.5 px-3 border border-r-0 rounded-l-md focus:outline-none focus:border-blue-800 text-sm"
-            />
-            <button className="bg-blue-800 text-white px-3 py-1.5 rounded-r-md hover:bg-blue-900 transition-colors text-sm">
-              검색
-            </button>
+          <div className="w-full sm:w-1/3 mb-4 sm:ml-auto">
+            <SearchBar value={search} onChange={handleSearchChange} />
           </div>
         </div>
 
@@ -324,10 +316,10 @@ const EventSchedule = () => {
                 onClick={closeError}
               />
               <div
-                className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                           bg-[#e2e2e2] text-black p-4 md:p-5 rounded-lg z-[10000] 
+                className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+                           bg-[#e2e2e2] text-black p-4 md:p-5 rounded-lg z-[10000]
                            w-[90%] md:w-[400px] max-w-[400px]
-                           h-[180px] md:h-[200px] 
+                           h-[180px] md:h-[200px]
                            flex flex-col justify-center items-center text-center"
                 role="alert"
               >
@@ -361,10 +353,10 @@ const EventSchedule = () => {
                 onClick={closeSuccessMessage}
               />
               <div
-                className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                           bg-[#e2e2e2] text-black p-4 md:p-5 rounded-lg z-[10000] 
+                className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+                           bg-[#e2e2e2] text-black p-4 md:p-5 rounded-lg z-[10000]
                            w-[90%] md:w-[400px] max-w-[400px]
-                           h-[150px] md:h-[170px] 
+                           h-[150px] md:h-[170px]
                            flex flex-col justify-center items-center text-center"
                 role="alert"
                 onClick={(e) => e.stopPropagation()}
@@ -385,22 +377,22 @@ const EventSchedule = () => {
 
           {!loading && !fetchError && !error && (
             <>
-              <ul className="SubFont space-y-4 overflow-hidden mx-auto max-w-4xl">
+              <ul className="SubFont text-3xl space-y-4 overflow-hidden">
                 {currentItems.length > 0 ? (
                   currentItems.map((festival, index) => (
                     <li
                       key={`${festival.programName}-${index}`}
-                      className="my-3 md:my-4 flex items-center opacity-0 animate-[slideDown_0.3s_ease-out_forwards]"
+                      className="my-3 md:my-5 flex items-center opacity-0 animate-[slideDown_0.3s_ease-out_forwards] cursor-pointer sm:cursor-default"
                       style={{ animationDelay: `${index * 0.05}s` }}
                     >
-                      <div className="border p-3 rounded-lg transition-colors w-full">
-                        <div className="flex items-start">
+                      <div className="border p-4 rounded-lg transition-colors w-full">
+                        <div className="flex items-start pr-5 sm:pr-0">
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
                               handleStarClick(festival);
                             }}
-                            className={`star-button mr-2 ${
+                            className={`star-button mr-2 sm:mr-3 p-0 flex items-center ${
                               isEventStarred(festival.festivalid)
                                 ? "text-yellow-400"
                                 : "text-gray-300"
@@ -412,31 +404,34 @@ const EventSchedule = () => {
                                 : "추가"
                             }`}
                           >
-                            <TiStarFullOutline className="text-xl sm:text-2xl" />
+                            <TiStarFullOutline className="text-2xl sm:text-3xl" />
                           </button>
-
                           <div className="flex-1">
-                            <div className="flex justify-between items-center mb-2">
-                              <h3 className="MainFont text-lg sm:text-xl">
+                            <div className="flex justify-between items-center mb-2 gap-2">
+                              <h3 className="MainFont text-sm sm:text-xl lg:text-2xl">
                                 {festival.programName}
                               </h3>
                               <button
-                                className="border-2 border-blue-800 rounded-md
-                                           hover:bg-blue-800 hover:text-white
-                                          text-sm
-                                          px-2.5 py-1
-                                          transition-all duration-300 ease-in-out
-                                          shadow-sm hover:shadow-md
-                                          text-center text-nowrap
-                                          font-bold"
-                                onClick={() => handleEventClick(festival)}
+                                className="border sm:border-2 border-blue-800 rounded-md
+                                         hover:bg-blue-800 hover:text-white
+                                         text-xs sm:text-base lg:text-lg
+                                         px-1.5 sm:px-3 lg:px-4
+                                         py-0.5 sm:py-1.5 lg:py-2
+                                         transition-all duration-300 ease-in-out
+                                         shadow-sm hover:shadow-md
+                                         text-center text-nowrap
+                                         font-bold"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleEventClick(festival);
+                                }}
                               >
                                 더보기
                               </button>
                             </div>
 
-                            <div className="flex flex-col lg:flex-row gap-3">
-                              <div className="lg:w-48 w-full">
+                            <div className="flex flex-col lg:flex-row gap-4 mb-4">
+                              <div className="lg:max-w-56 w-full">
                                 <img
                                   src={
                                     festival.image && festival.image !== "N/A"
@@ -450,8 +445,8 @@ const EventSchedule = () => {
                                 />
                               </div>
                               <div className="flex-1">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
-                                  <div className=" p-2 sm:p-3 rounded-lg">
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 sm:gap-4">
+                                  <div className="p-1 sm:p-3 rounded-lg">
                                     <p className="SubFont text-base sm:text-lg">
                                       <span className="font-medium mr-2">
                                         행사 내용:
@@ -459,7 +454,7 @@ const EventSchedule = () => {
                                       {formatValue(festival.programContent)}
                                     </p>
                                   </div>
-                                  <div className=" p-2 sm:p-3 rounded-lg">
+                                  <div className="p-1 sm:p-3 rounded-lg">
                                     <p className="SubFont text-base sm:text-lg">
                                       <span className="font-medium mr-2">
                                         기간:
@@ -468,7 +463,7 @@ const EventSchedule = () => {
                                       {formatValue(festival.endDate)}
                                     </p>
                                   </div>
-                                  <div className=" p-2 sm:p-3 rounded-lg">
+                                  <div className="p-1 sm:p-3 rounded-lg">
                                     <p className="SubFont text-base sm:text-lg">
                                       <span className="font-medium mr-2">
                                         장소:
@@ -476,7 +471,7 @@ const EventSchedule = () => {
                                       {formatValue(festival.location)}
                                     </p>
                                   </div>
-                                  <div className=" p-2 sm:p-3 rounded-lg">
+                                  <div className="p-1 sm:p-3 rounded-lg">
                                     <p className="SubFont text-base sm:text-lg">
                                       <span className="font-medium mr-2">
                                         대상:
@@ -484,7 +479,7 @@ const EventSchedule = () => {
                                       {formatValue(festival.targetAudience)}
                                     </p>
                                   </div>
-                                  <div className=" p-2 sm:p-3 rounded-lg lg:col-span-2">
+                                  <div className="p-1 sm:p-3 rounded-lg lg:col-span-2">
                                     <p className="SubFont text-base sm:text-lg">
                                       <span className="font-medium mr-2">
                                         문의:
@@ -501,7 +496,7 @@ const EventSchedule = () => {
                     </li>
                   ))
                 ) : (
-                  <p className="text-center text-gray-500 py-6 text-lg">
+                  <p className="text-center text-gray-500 py-8 text-xl">
                     해당 날짜에 예정된 행사가 없습니다.
                   </p>
                 )}
