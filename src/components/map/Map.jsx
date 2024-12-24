@@ -72,6 +72,7 @@ const Map = ({ selectedLocation }) => {
         const map = new window.google.maps.Map(mapRef.current, {
           center: currentPosition,
           zoom: 12,
+          gestureHandling: "greedy",
           // 지도 타입 컨트롤 (지도/위성)
           mapTypeControl: true,
           mapTypeControlOptions: {
