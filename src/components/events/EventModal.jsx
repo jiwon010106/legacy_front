@@ -138,11 +138,16 @@ const EventModal = ({ event, onClose, hideStarButton }) => {
       />
       <div
         className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                     bg-white rounded-lg shadow-xl z-50 w-full max-w-3xl p-6 max-h-[90vh] overflow-y-auto"
+                   bg-white rounded-lg shadow-xl z-50 w-full max-w-3xl 
+                   p-3 sm:p-6
+                   max-h-[80vh] sm:max-h-[90vh] 
+                   overflow-y-auto"
       >
         <div>
           <div className="flex justify-between items-center mb-[8px]">
-            <h2 className="MainFont text-2xl">{event.programName}</h2>
+            <h2 className="MainFont text-xl sm:text-2xl">
+              {event.programName}
+            </h2>
             <div className="flex items-center gap-4">
               {!hideStarButton && (
                 <button
@@ -160,12 +165,15 @@ const EventModal = ({ event, onClose, hideStarButton }) => {
               </button>
             </div>
           </div>
-          <div className="SubFont text-2xl space-y-3">
-            <div className="border border-gray-700 w-full p-4 rounded-md text-gray-950 whitespace-pre-line overflow-hidden text-[20px]">
+          <div className="SubFont text-xl sm:text-2xl space-y-2 sm:space-y-3">
+            <div
+              className="border border-gray-700 w-full p-2 sm:p-4 rounded-md text-gray-950 
+                          whitespace-pre-line overflow-hidden text-base sm:text-[20px]"
+            >
               <p>{event.programContent}</p>
             </div>
 
-            <div className="SubFont grid grid-cols-2 gap-4 text-lg">
+            <div className="SubFont grid grid-cols-2 gap-2 sm:gap-4 text-base sm:text-lg">
               <div>
                 <p>기간</p>
                 <p>
@@ -206,10 +214,12 @@ const EventModal = ({ event, onClose, hideStarButton }) => {
           onClick={closeAlert}
         >
           <div
-            className="bg-[#e2e2e2] rounded-lg p-6 max-w-sm w-full mx-4 h-[180px] md:h-[200px] flex flex-col justify-center items-center"
+            className="bg-[#e2e2e2] rounded-lg p-4 sm:p-6 max-w-sm w-full mx-4 
+                      h-[150px] sm:h-[180px] md:h-[200px] 
+                      flex flex-col justify-center items-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <p className="text-center text-lg mb-4 whitespace-pre-wrap">
+            <p className="text-center text-base sm:text-lg mb-4 whitespace-pre-wrap">
               {alertMessage}
             </p>
             <div className="flex gap-2 mt-4">
