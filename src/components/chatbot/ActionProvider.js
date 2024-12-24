@@ -23,7 +23,7 @@ class ActionProvider {
         messages: [...prevState.messages, loadingMessage],
       }));
 
-      const response = await fetch("http://back.jjiwon.site/chat", {
+      const response = await fetch("https://back.jjiwon.site/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

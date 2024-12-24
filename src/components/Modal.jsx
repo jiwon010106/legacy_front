@@ -27,13 +27,13 @@ const Modal = ({ item, onClose, onFavoriteChange }) => {
 
       if (!isFavorite) {
         await axios.post(
-          "http://back.jjiwon.site/pgdb/favoritelist",
+          "https://back.jjiwon.site/pgdb/favoritelist",
           { id: item.heritageid, type: "heritage" },
           { headers: { Authorization: `Bearer ${token}` } }
         );
         dispatch(addFavorite({ type: "heritage", data: item }));
       } else {
-        await axios.delete("http://back.jjiwon.site/pgdb/favoritelist", {
+        await axios.delete("https://back.jjiwon.site/pgdb/favoritelist", {
           headers: { Authorization: `Bearer ${token}` },
           data: { id: item.heritageid, type: "heritage" },
         });
